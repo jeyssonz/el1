@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_FirebaseVideo.Menu">
+
+    <StackLayout Orientation="Horizontal">
+    <Button Text="Curso"  VerticalOptions="End" HorizontalOptions="EndAndExpand" Clicked="Button_Clicked"  />
+        <Button Text="Evaluacion" VerticalOptions="End" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked_1"  />
+        <Button Text="Rubrica" VerticalOptions="End" HorizontalOptions="StartAndExpand" Clicked="Button_Clicked_2"  />
+    </StackLayout>
+
+</ContentPage>
