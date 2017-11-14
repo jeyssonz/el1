@@ -15,9 +15,12 @@ namespace X_FirebaseVideo
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-        public Estudiante()
+        public string a;
+        public Estudiante(string dui)
         {
-            Title = "Estudiante";
+
+            a = dui;
+            Title = "Estudiante" + dui;
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
 
@@ -33,9 +36,10 @@ namespace X_FirebaseVideo
                 indicator.IsRunning = true;
                 indicator.IsVisible = true;
             }
+            
 
             var list = (await firebase
-            .Child("Estudiante")
+            .Child("Estudiante" + a)
             .OnceAsync<Contact>());
 
             people.Clear();
@@ -62,7 +66,7 @@ namespace X_FirebaseVideo
         public async void Handle_Toolbar_Add(object sender, EventArgs e)
         {
             Contact c = new Contact();
-            var formulario1 = new Formulario2(true);
+            var formulario1 = new Formulario2(true,a);
             formulario1.BindingContext = c;
             await Navigation.PushAsync(formulario1);
         }
@@ -70,7 +74,7 @@ namespace X_FirebaseVideo
         public async void Handle_Toolbar_DeleteAll(object sender, EventArgs e)
         {
             await firebase
-                .Child("Estudiante").DeleteAsync();
+                .Child("Estudiante" + a).DeleteAsync();
 
             await getList();
         }
@@ -80,7 +84,7 @@ namespace X_FirebaseVideo
             if (e.SelectedItem == null) return;
             Contact data = e.SelectedItem as Contact;
 
-            var formulario1 = new Formulario2(false);
+            var formulario1 = new Formulario2(false,a);
             formulario1.BindingContext = data;
             await Navigation.PushAsync(formulario1);
 
@@ -92,7 +96,7 @@ namespace X_FirebaseVideo
             Contact data = item.CommandParameter as Contact;
 
             await firebase
-                .Child("Estudiante").Child(data.Uid).DeleteAsync();
+                .Child("Estudiante Campo " + a).Child(data.Uid).DeleteAsync();
 
             await getList();
         }

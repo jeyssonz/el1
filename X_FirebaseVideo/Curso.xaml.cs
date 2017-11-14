@@ -47,11 +47,9 @@ namespace X_FirebaseVideo
 
             foreach (var item in list)
             {
-
                 Contact c = item.Object as Contact;
                 c.Uid = item.Key;
                 people.Add(c);
-
             }
 
             indicator.IsRunning = false;
@@ -63,10 +61,12 @@ namespace X_FirebaseVideo
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            
             if (e.SelectedItem == null) return;
             Contact data = e.SelectedItem as Contact;
 
-            var formulario1 = new Estudiante();
+            string dui = data.Notes; 
+            var formulario1 = new Estudiante(dui);
             formulario1.BindingContext = data;
             await Navigation.PushAsync(formulario1);
         }
@@ -74,6 +74,7 @@ namespace X_FirebaseVideo
 
         public async void Handle_Toolbar_Add(object sender, EventArgs e)
         {
+            
             Contact c = new Contact();
             var formulario1 = new Formulario1(true);
             formulario1.BindingContext = c;
@@ -84,7 +85,6 @@ namespace X_FirebaseVideo
         {
             await firebase
                 .Child("Curso").DeleteAsync();
-
             await getList();
         }
 
@@ -93,7 +93,6 @@ namespace X_FirebaseVideo
         {
             MenuItem item = (MenuItem)sender;
             Contact data = item.CommandParameter as Contact;
-
             await firebase
                 .Child("Curso").Child(data.Uid).DeleteAsync();
 
