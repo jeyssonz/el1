@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_FirebaseVideo.El_Estudiante">
+
+    <StackLayout Orientation="Vertical">
+
+        <ActivityIndicator x:Name="indicator" HorizontalOptions="CenterAndExpand" Color="Black" IsVisible="false"></ActivityIndicator>
+
+        <ListView x:Name="laLista" ItemSelected="Handle_ItemSelected"
+                    IsPullToRefreshEnabled="True" 
+                    RefreshCommand="{Binding RefreshCommand}"
+                    IsRefreshing="{Binding IsRefreshing}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="{Binding FullName}" />
+                            <Label Text="{Binding Notes}" />
+                        </StackLayout>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </StackLayout>
+
+</ContentPage>

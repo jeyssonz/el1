@@ -9,24 +9,25 @@ using System.Windows.Input;
 
 namespace X_FirebaseVideo
 {
-    public partial class X_FirebaseVideoPage : ContentPage
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class El_Estudiante : ContentPage
     {
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
+        string a;
 
-        public X_FirebaseVideoPage()
+        public El_Estudiante(String dui)
         {
-            Title = "Elija el curso";
+            this.a = dui;
+            Title = "Escoja el estudiante";
             InitializeComponent();
-
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
 
             BindingContext = this;
 
             laLista.ItemsSource = people;
         }
-
 
         public async Task<int> getList()
         {
@@ -37,15 +38,16 @@ namespace X_FirebaseVideo
             }
 
             var list = (await firebase
-            .Child("Curso")
+            .Child("Estudiante" + a)
             .OnceAsync<Contact>());
 
             people.Clear();
 
-            Debug.WriteLine("Número de entradas en firebase "+list.Count);
+            Debug.WriteLine("Número de entradas en firebase " + list.Count);
 
- 
-            foreach (var item in list){
+
+            foreach (var item in list)
+            {
 
                 Contact c = item.Object as Contact;
                 c.Uid = item.Key;
@@ -61,18 +63,19 @@ namespace X_FirebaseVideo
         }
 
 
+
         async void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
             Contact data = e.SelectedItem as Contact;
 
             string dui = data.Notes;
-            var secondPage = new El_Estudiante(dui);
+            var secondPage = new Eva(a,dui);
             secondPage.BindingContext = data;
             await Navigation.PushAsync(secondPage);
         }
 
-       
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();

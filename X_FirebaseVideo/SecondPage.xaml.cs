@@ -10,9 +10,12 @@ namespace X_FirebaseVideo
     {
         private bool add;
         FirebaseClient firebase;
+        String a,b;
 
-        public SecondPage(bool add)
+        public SecondPage(bool add,String a, String b)
         {
+            this.a = a;
+            this.b = b;
             this.add = add;
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
             InitializeComponent();
@@ -33,13 +36,13 @@ namespace X_FirebaseVideo
             if (add)
             {
                 await firebase
-                .Child("yourentity")
+                .Child("Evaluación" + a + b)
                 //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                 .PostAsync(item);
             } else 
             {
                 await firebase
-                .Child("yourentity")
+                .Child("Evaluación" + a + b)
                 .Child(item.Uid)
                 //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                 .PutAsync(item);

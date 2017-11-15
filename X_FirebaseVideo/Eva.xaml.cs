@@ -9,17 +9,20 @@ using System.Windows.Input;
 
 namespace X_FirebaseVideo
 {
-    public partial class X_FirebaseVideoPage : ContentPage
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Eva : ContentPage
     {
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-
-        public X_FirebaseVideoPage()
+        string a, b;
+        public Eva(String a,String b)
         {
-            Title = "Elija el curso";
-            InitializeComponent();
+            this.a = a;
+            this.b = b;
 
+            Title = "Escoja la evaluacion";
+            InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
 
             BindingContext = this;
@@ -37,15 +40,16 @@ namespace X_FirebaseVideo
             }
 
             var list = (await firebase
-            .Child("Curso")
+            .Child("Evaluación" + a + b)
             .OnceAsync<Contact>());
 
             people.Clear();
 
-            Debug.WriteLine("Número de entradas en firebase "+list.Count);
+            Debug.WriteLine("Número de entradas en firebase " + list.Count);
 
- 
-            foreach (var item in list){
+
+            foreach (var item in list)
+            {
 
                 Contact c = item.Object as Contact;
                 c.Uid = item.Key;
@@ -61,18 +65,18 @@ namespace X_FirebaseVideo
         }
 
 
+
         async void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
             Contact data = e.SelectedItem as Contact;
 
-            string dui = data.Notes;
-            var secondPage = new El_Estudiante(dui);
+            var secondPage = new SecondPage(false,a,b);
             secondPage.BindingContext = data;
             await Navigation.PushAsync(secondPage);
         }
 
-       
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -89,7 +93,20 @@ namespace X_FirebaseVideo
             }
         }
 
+        public async void Handle_Toolbar_Add(object sender, EventArgs e)
+        {
+            Contact c = new Contact();
+            var formulario1 = new SecondPage(true,a,b);
+            formulario1.BindingContext = c;
+            await Navigation.PushAsync(formulario1);
+        }
 
+        public async void Handle_Toolbar_DeleteAll(object sender, EventArgs e)
+        {
+            await firebase
+                         .Child("Evaluación" + a + b).DeleteAsync();
+            await getList();
+        }
 
         public ICommand RefreshCommand
         {
@@ -104,6 +121,8 @@ namespace X_FirebaseVideo
                 });
             }
         }
+
+
 
     }
 }

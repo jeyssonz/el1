@@ -41,8 +41,14 @@
     <Compile Include="Curso.xaml.cs">
       <DependentUpon>Curso.xaml</DependentUpon>
     </Compile>
+    <Compile Include="El_Estudiante.xaml.cs">
+      <DependentUpon>El_Estudiante.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Estudiante.xaml.cs">
       <DependentUpon>Estudiante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Eva.xaml.cs">
+      <DependentUpon>Eva.xaml</DependentUpon>
     </Compile>
     <Compile Include="Formulario1.xaml.cs">
       <DependentUpon>Formulario1.xaml</DependentUpon>
@@ -138,6 +144,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="a1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="El_Estudiante.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Eva.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
