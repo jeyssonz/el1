@@ -9,7 +9,7 @@
 
             <StackLayout Orientation="Horizontal">
 
-                <Label Text="Full Name"></Label>
+                <Label Text="Curso  :"></Label>
                 <Entry Text="{Binding FullName}" HorizontalOptions="FillAndExpand" ></Entry>
 
             </StackLayout>
@@ -17,7 +17,7 @@
 
             <StackLayout Orientation="Horizontal">
 
-                <Label Text="Notes"></Label>
+                <Label Text="NRC    :"></Label>
                 <Entry Text="{Binding Notes}" HorizontalOptions="FillAndExpand" ></Entry>
 
             </StackLayout>

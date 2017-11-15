@@ -8,7 +8,7 @@
 
             <StackLayout Orientation="Horizontal">
 
-                <Label Text="Full Name"></Label>
+                <Label Text="Nombre completo:"></Label>
                 <Entry Text="{Binding FullName}" HorizontalOptions="FillAndExpand" ></Entry>
 
             </StackLayout>
@@ -16,7 +16,7 @@
 
             <StackLayout Orientation="Horizontal">
 
-                <Label Text="Notes"></Label>
+                <Label Text="Codigo :"></Label>
                 <Entry Text="{Binding Notes}" HorizontalOptions="FillAndExpand" ></Entry>
 
             </StackLayout>

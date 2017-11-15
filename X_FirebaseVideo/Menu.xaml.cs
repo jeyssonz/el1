@@ -14,7 +14,7 @@ namespace X_FirebaseVideo
     {
         public Menu()
         {
-            Title = "Menu";
+            Title = "Menú";
             InitializeComponent();
         }
 

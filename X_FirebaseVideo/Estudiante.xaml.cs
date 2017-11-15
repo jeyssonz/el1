@@ -20,7 +20,7 @@ namespace X_FirebaseVideo
         {
 
             a = dui;
-            Title = "Estudiante" + dui;
+            Title = "Estudiante NRC: " + dui;
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
 
