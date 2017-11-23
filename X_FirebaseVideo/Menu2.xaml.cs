@@ -13,16 +13,21 @@ namespace X_FirebaseVideo
     public partial class Menu2 : ContentPage
     {
         String a;
-        public Menu2(String dui)
+        String id;
+        bool origen;
+        public Menu2(String a,String id,bool origen)
         {
+            this.origen = origen;
+            this.id = id;
+            this.a = a;
             Title = "Selección";
             InitializeComponent();
-            a = dui;
+            
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Estudiante(a));
+            Navigation.PushAsync(new Estudiante(a,id,origen));
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)

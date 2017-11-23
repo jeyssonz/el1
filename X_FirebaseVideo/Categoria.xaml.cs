@@ -15,10 +15,17 @@ namespace X_FirebaseVideo
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-        string a;
-        public Categoria(string id)
+        string a,idCurso,idEstudiante;
+        bool origen;
+        public Categoria(string id,String idCurso ,String idEstudiante, bool origen)
         {
-            a = id;
+            this.origen = origen;
+            if (origen == true)
+            {
+                this.idCurso = idCurso;
+                this.idEstudiante = idEstudiante;
+            }
+                a = id;
             Title = "Categoria";
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
@@ -63,14 +70,28 @@ namespace X_FirebaseVideo
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            if(origen==true)
+            {
+                if (e.SelectedItem == null) return;
+                Contact data = e.SelectedItem as Contact;
 
-            if (e.SelectedItem == null) return;
-            Contact data = e.SelectedItem as Contact;
+                string dui = data.Notes;
+                var formulario1 = new SubCategoria(dui,idCurso,idEstudiante,origen);
+                formulario1.BindingContext = data;
+                await Navigation.PushAsync(formulario1);
+            }
+            else
+            {
 
-            string dui = data.Notes;
-            var formulario1 = new SubCategoria(dui);
-            formulario1.BindingContext = data;
-            await Navigation.PushAsync(formulario1);
+                if (e.SelectedItem == null) return;
+                Contact data = e.SelectedItem as Contact;
+
+                string dui = data.Notes;
+                var formulario1 = new SubCategoria(dui,"","",origen);
+                formulario1.BindingContext = data;
+                await Navigation.PushAsync(formulario1);
+            }
+
         }
 
 

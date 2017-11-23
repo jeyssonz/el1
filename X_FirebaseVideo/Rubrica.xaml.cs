@@ -65,19 +65,20 @@ namespace X_FirebaseVideo
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (origen == true)
-            {
+            
                 if (e.SelectedItem == null) return;
                 Contact data = e.SelectedItem as Contact;
 
                 string dui = data.Notes;
-                var formulario1 = new Categoria(dui);
+            if (origen == true)
+            {
+                var formulario1 = new Categoria(dui,"","",false);
                 formulario1.BindingContext = data;
                 await Navigation.PushAsync(formulario1);
             }
             else
             {
-                var formulario1 = new Menu2(a);
+                var formulario1 = new Menu2(a,dui,true);
                 await Navigation.PushAsync(formulario1);
             }
         }

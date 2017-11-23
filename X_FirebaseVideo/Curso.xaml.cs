@@ -15,9 +15,11 @@ namespace X_FirebaseVideo
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
+        
 
         public Curso()
         {
+            
             Title = "Curso";
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
@@ -66,7 +68,7 @@ namespace X_FirebaseVideo
             Contact data = e.SelectedItem as Contact;
 
             string dui = data.Notes; 
-            var formulario1 = new Menu2(dui);
+            var formulario1 = new Menu2(dui,"",false);
             formulario1.BindingContext = data;
             await Navigation.PushAsync(formulario1);
         }

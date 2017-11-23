@@ -15,11 +15,14 @@ namespace X_FirebaseVideo
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-        public string a;
-        public Estudiante(string dui)
+        public string a,dui;
+        bool origen;
+        public Estudiante(String a, String dui, bool origen)
         {
+            this.origen = origen;
+            this.a = a;
+            this.dui = dui;
 
-            a = dui;
             Title = "Estudiante NRC: " + dui;
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
@@ -81,13 +84,26 @@ namespace X_FirebaseVideo
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null) return;
-            Contact data = e.SelectedItem as Contact;
+            if(origen == true)
+            {
+                if (e.SelectedItem == null) return;
+                Contact data = e.SelectedItem as Contact;
 
-            var formulario1 = new Formulario2(false,a);
-            formulario1.BindingContext = data;
-            await Navigation.PushAsync(formulario1);
+                string idEstudiante = data.Notes;
 
+                var formulario1 = new Categoria(dui,a,idEstudiante,true);
+                await Navigation.PushAsync(formulario1);
+            }
+            else
+            {
+                if (e.SelectedItem == null) return;
+                Contact data = e.SelectedItem as Contact;
+
+                var formulario1 = new Formulario2(false, a);
+                formulario1.BindingContext = data;
+                await Navigation.PushAsync(formulario1);
+            }
+           
         }
 
         async void OnDeleteItem(object sender, EventArgs e)

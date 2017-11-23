@@ -17,7 +17,7 @@ namespace X_FirebaseVideo
         private bool _isRefreshing = false;
         string a;
 
-        public SubCategoria(String id)
+        public SubCategoria(String id, String idCurso, String idEstudiante, bool origen)
         {
             a = id;
             Title = "SubCategoria";
