@@ -15,11 +15,21 @@ namespace X_FirebaseVideo
         ObservableCollection<Elemento> people = new ObservableCollection<Elemento>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-        string a;
+        string id,idCurso,idEstudiante;
+        bool origen, Inicio;
+        double Resultado;
 
-        public SubCategoria(String id, String idCurso, String idEstudiante, bool origen)
+        public SubCategoria(String idRubrica, String id, String idCurso, String idEstudiante, bool origen,bool Inicio,Double Resultado)
         {
-            a = id;
+            this.origen = origen;
+            if (origen == true)
+            {
+                this.Inicio = Inicio;
+                this.idCurso = idCurso;
+                this.idEstudiante = idEstudiante;
+            }
+            this.id = id;
+            this.Resultado = Resultado;
             Title = "SubCategoria";
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
@@ -41,7 +51,7 @@ namespace X_FirebaseVideo
             }
 
             var list = (await firebase
-            .Child("SubCategoria" + a)
+            .Child("SubCategoria" + id)
             .OnceAsync<Elemento>());
 
             people.Clear();
@@ -63,25 +73,46 @@ namespace X_FirebaseVideo
 
         }
 
-       /* async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 
-            if (e.SelectedItem == null) return;
-            Elemento data = e.SelectedItem as Elemento;
+            if (origen == true)
+            {
+                if (e.SelectedItem == null) return;
+                Elemento data = e.SelectedItem as Elemento;
+                String peso = "" + data.Peso;
+                String l1 = "" + data.L1;
+                String l2 = "" + data.L2;
+                String l3 = "" + data.L3;
+                String l4 = "" + data.L4;
+                var formulario1 = new Calificar(id, idCurso,idEstudiante, origen,l1,l2,l3,l4,peso,Resultado, Inicio);
+                formulario1.BindingContext = data;
+                await Navigation.PushAsync(formulario1);
+            }
+            else
+            {
 
-            string dui = data.Peso;
-            var formulario1 = new FormularioElemento(false);
-            formulario1.BindingContext = data;
-            await Navigation.PushAsync(formulario1);
+                if (e.SelectedItem == null) return;
+                Elemento data = e.SelectedItem as Elemento;
+                String peso = "" + data.Peso;
+                String l1 = "" + data.L1;
+                String l2 = "" + data.L2;
+                String l3 = "" + data.L3;
+                String l4 = "" + data.L4; 
+
+                var formulario1 = new Calificar(id,"","",origen,l1,l2,l3,l4,peso,Resultado,Inicio);
+                formulario1.BindingContext = data;
+                await Navigation.PushAsync(formulario1);
+            }
         }
-        */
+       
 
 
         public async void Handle_Toolbar_Add(object sender, EventArgs e)
         {
 
             Elemento c = new Elemento();
-            var formulario1 = new FormularioElemento(true,a);
+            var formulario1 = new FormularioElemento(true,id);
             formulario1.BindingContext = c;
             await Navigation.PushAsync(formulario1);
         }
@@ -89,7 +120,7 @@ namespace X_FirebaseVideo
         public async void Handle_Toolbar_DeleteAll(object sender, EventArgs e)
         {
             await firebase
-                .Child("SubCategoria" + a).DeleteAsync();
+                .Child("SubCategoria" + id).DeleteAsync();
             await getList();
         }
 
@@ -99,7 +130,7 @@ namespace X_FirebaseVideo
             MenuItem item = (MenuItem)sender;
             Elemento data = item.CommandParameter as Elemento;
             await firebase
-                .Child("SubCategoria" + a).Child(data.Uid).DeleteAsync();
+                .Child("SubCategoria" + Id).Child(data.Uid).DeleteAsync();
 
             await getList();
         }

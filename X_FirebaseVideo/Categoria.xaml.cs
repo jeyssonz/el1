@@ -17,8 +17,9 @@ namespace X_FirebaseVideo
         private bool _isRefreshing = false;
         string a,idCurso,idEstudiante;
         bool origen;
-        public Categoria(string id,String idCurso ,String idEstudiante, bool origen)
+        public Categoria(string id,String idCurso ,String idEstudiante, bool origen,bool Inicio,double Resultado)
         {
+            
             this.origen = origen;
             if (origen == true)
             {
@@ -75,8 +76,8 @@ namespace X_FirebaseVideo
                 if (e.SelectedItem == null) return;
                 Contact data = e.SelectedItem as Contact;
 
-                string dui = data.Notes;
-                var formulario1 = new SubCategoria(dui,idCurso,idEstudiante,origen);
+                string CID = data.Notes;
+                var formulario1 = new SubCategoria(a,CID,idCurso,idEstudiante,origen,true,0);
                 formulario1.BindingContext = data;
                 await Navigation.PushAsync(formulario1);
             }
@@ -86,8 +87,8 @@ namespace X_FirebaseVideo
                 if (e.SelectedItem == null) return;
                 Contact data = e.SelectedItem as Contact;
 
-                string dui = data.Notes;
-                var formulario1 = new SubCategoria(dui,"","",origen);
+                string CID = data.Notes;
+                var formulario1 = new SubCategoria(a,CID,"","",origen,true,0);
                 formulario1.BindingContext = data;
                 await Navigation.PushAsync(formulario1);
             }

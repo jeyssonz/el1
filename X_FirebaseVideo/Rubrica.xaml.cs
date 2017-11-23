@@ -72,7 +72,7 @@ namespace X_FirebaseVideo
                 string dui = data.Notes;
             if (origen == true)
             {
-                var formulario1 = new Categoria(dui,"","",false);
+                var formulario1 = new Categoria(dui,"","",false,true,0);
                 formulario1.BindingContext = data;
                 await Navigation.PushAsync(formulario1);
             }

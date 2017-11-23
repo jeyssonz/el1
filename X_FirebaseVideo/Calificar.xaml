@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_FirebaseVideo.Calificar">
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical">
+            <Picker x:Name="MainPicker" SelectedIndexChanged="MainPicker_SelectedIndexChanged" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical">
+                <Slider x:Name="Slider"  ></Slider>
+
+        <Button x:Name="Boton" Text="Guardar" Clicked="Boton_Clicked" ></Button>
+    </StackLayout>
+    </StackLayout>
+</ContentPage>

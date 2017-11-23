@@ -91,7 +91,7 @@ namespace X_FirebaseVideo
 
                 string idEstudiante = data.Notes;
 
-                var formulario1 = new Categoria(dui,a,idEstudiante,true);
+                var formulario1 = new Categoria(dui,a,idEstudiante,true,true,0);
                 await Navigation.PushAsync(formulario1);
             }
             else

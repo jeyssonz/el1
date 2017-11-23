@@ -14,7 +14,7 @@
 
         <ActivityIndicator x:Name="indicator" HorizontalOptions="CenterAndExpand" Color="Black" IsVisible="false"></ActivityIndicator>
 
-        <ListView x:Name="laLista" 
+        <ListView x:Name="laLista" ItemSelected="Handle_ItemSelected"
                     IsPullToRefreshEnabled="True" 
                     RefreshCommand="{Binding RefreshCommand}"
                     IsRefreshing="{Binding IsRefreshing}"
