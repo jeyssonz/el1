@@ -9,16 +9,17 @@ using System.Windows.Input;
 
 namespace X_FirebaseVideo
 {
-    //[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Curso : ContentPage
+   // [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Categoria : ContentPage
     {
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-
-        public Curso()
+        string a;
+        public Categoria(string id)
         {
-            Title = "Curso";
+            a = id;
+            Title = "Categoria";
             InitializeComponent();
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
 
@@ -26,6 +27,7 @@ namespace X_FirebaseVideo
 
             laLista.ItemsSource = people;
         }
+   
 
 
         public async Task<int> getList()
@@ -37,7 +39,7 @@ namespace X_FirebaseVideo
             }
 
             var list = (await firebase
-            .Child("Curso")
+            .Child("Categoria" + a)
             .OnceAsync<Contact>());
 
             people.Clear();
@@ -61,12 +63,12 @@ namespace X_FirebaseVideo
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            
+
             if (e.SelectedItem == null) return;
             Contact data = e.SelectedItem as Contact;
 
-            string dui = data.Notes; 
-            var formulario1 = new Menu2(dui);
+            string dui = data.Notes;
+            var formulario1 = new SubCategoria(dui);
             formulario1.BindingContext = data;
             await Navigation.PushAsync(formulario1);
         }
@@ -74,9 +76,9 @@ namespace X_FirebaseVideo
 
         public async void Handle_Toolbar_Add(object sender, EventArgs e)
         {
-            
+
             Contact c = new Contact();
-            var formulario1 = new Formulario1(true);
+            var formulario1 = new FormularioCategoria(true,a);
             formulario1.BindingContext = c;
             await Navigation.PushAsync(formulario1);
         }
@@ -84,7 +86,7 @@ namespace X_FirebaseVideo
         public async void Handle_Toolbar_DeleteAll(object sender, EventArgs e)
         {
             await firebase
-                .Child("Curso").DeleteAsync();
+                .Child("Categoria" + a).DeleteAsync();
             await getList();
         }
 
@@ -94,7 +96,7 @@ namespace X_FirebaseVideo
             MenuItem item = (MenuItem)sender;
             Contact data = item.CommandParameter as Contact;
             await firebase
-                .Child("Curso").Child(data.Uid).DeleteAsync();
+                .Child("Categoria" + a).Child(data.Uid).DeleteAsync();
 
             await getList();
         }

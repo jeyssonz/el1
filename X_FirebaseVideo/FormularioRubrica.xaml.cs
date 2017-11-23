@@ -4,44 +4,45 @@ using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
 using Xamarin.Forms;
 
+
 namespace X_FirebaseVideo
 {
-    public partial class SecondPage : ContentPage
+   // [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class FormularioRubrica : ContentPage
     {
         private bool add;
         FirebaseClient firebase;
-        String a;
-
-        public SecondPage(bool add,String a)
+        public FormularioRubrica(bool add)
         {
-            this.a = a;
+      
             this.add = add;
             firebase = new FirebaseClient("https://calificador-de-rubrica.firebaseio.com/");
             InitializeComponent();
-            if (add){
-                Title = "Nuevo elemento";
-            } else {
+            if (add)
+            {
+                Title = "Nueva Rubrica";
+            }
+            else
+            {
                 Title = "Edición";
             }
-
         }
-
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-
             var item = (Contact)BindingContext;
 
             if (add)
             {
                 await firebase
-                .Child("Evaluación" + a)
+                .Child("Rubrica")
                 //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                 .PostAsync(item);
-            } else 
+            }
+            else
             {
                 await firebase
-                .Child("Evaluación" + a)
+                .Child("Rubrica")
                 .Child(item.Uid)
                 //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                 .PutAsync(item);

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_FirebaseVideo.FormularioRubrica">
+    <ContentPage.Content>
+
+    <StackLayout Orientation="Vertical">
+
+        <StackLayout Orientation="Horizontal">
+
+            <Label Text="Rubrica  :"></Label>
+            <Entry Text="{Binding FullName}" HorizontalOptions="FillAndExpand" ></Entry>
+
+        </StackLayout>
+
+
+        <StackLayout Orientation="Horizontal">
+
+            <Label Text="NRC    :"></Label>
+            <Entry Text="{Binding Notes}" HorizontalOptions="FillAndExpand" ></Entry>
+
+        </StackLayout>
+
+        <Button Text="Save" HorizontalOptions="FillAndExpand" BackgroundColor="Blue" TextColor="White" Clicked="Save_Clicked" />
+
+
+    </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

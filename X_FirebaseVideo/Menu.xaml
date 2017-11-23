@@ -7,7 +7,6 @@
         <Image Source="a1.png" WidthRequest="250" HeightRequest="350" ></Image>
         <StackLayout Orientation="Horizontal">
             <Button Text="Curso"  VerticalOptions="End" HorizontalOptions="EndAndExpand" Clicked="Button_Clicked"  />
-            <Button Text="Evaluacion" VerticalOptions="End" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked_1"  />
             <Button Text="Rubrica" VerticalOptions="End" HorizontalOptions="StartAndExpand" Clicked="Button_Clicked_2"  />
         </StackLayout>
        

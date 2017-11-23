@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_FirebaseVideo.SubCategoria">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Order="Primary" Text="+" Priority="0" Clicked="Handle_Toolbar_Add" />
+        <ToolbarItem Order="Primary" Text="-" Priority="0" Clicked="Handle_Toolbar_DeleteAll" />
+
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Orientation="Vertical">
+
+        <ActivityIndicator x:Name="indicator" HorizontalOptions="CenterAndExpand" Color="Black" IsVisible="false"></ActivityIndicator>
+
+        <ListView x:Name="laLista" 
+                    IsPullToRefreshEnabled="True" 
+                    RefreshCommand="{Binding RefreshCommand}"
+                    IsRefreshing="{Binding IsRefreshing}"
+
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="OnDeleteItem" CommandParameter="{Binding}" Text="Delete" IsDestructive="True" />
+                        </ViewCell.ContextActions>
+
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="{Binding Nombre}" />
+                            <Label Text="{Binding Peso}" />
+                            <Label Text="{Binding L1}" />
+                            <Label Text="{Binding L2}" />
+                            <Label Text="{Binding L3}" />
+                            <Label Text="{Binding L4}" />
+                        </StackLayout>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </StackLayout>
+
+</ContentPage>

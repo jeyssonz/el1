@@ -70,7 +70,7 @@ namespace X_FirebaseVideo
             Contact data = e.SelectedItem as Contact;
 
             string dui = data.Notes;
-            var secondPage = new Eva(a,dui);
+            var secondPage = new Eva(a);
             secondPage.BindingContext = data;
             await Navigation.PushAsync(secondPage);
         }

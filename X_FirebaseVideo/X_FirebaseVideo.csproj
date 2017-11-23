@@ -38,9 +38,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Categoria.xaml.cs">
+      <DependentUpon>Categoria.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Curso.xaml.cs">
       <DependentUpon>Curso.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Elemento.cs" />
     <Compile Include="El_Estudiante.xaml.cs">
       <DependentUpon>El_Estudiante.xaml</DependentUpon>
     </Compile>
@@ -56,8 +60,27 @@
     <Compile Include="Formulario2.xaml.cs">
       <DependentUpon>Formulario2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormularioCategoria.xaml.cs">
+      <DependentUpon>FormularioCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioElemento.xaml.cs">
+      <DependentUpon>FormularioElemento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioRubrica.xaml.cs">
+      <DependentUpon>FormularioRubrica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Medidor.cs" />
     <Compile Include="Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu2.xaml.cs">
+      <DependentUpon>Menu2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rubrica.xaml.cs">
+      <DependentUpon>Rubrica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubCategoria.xaml.cs">
+      <DependentUpon>SubCategoria.xaml</DependentUpon>
     </Compile>
     <Compile Include="X_FirebaseVideoPage.xaml.cs">
       <DependentUpon>X_FirebaseVideoPage.xaml</DependentUpon>
@@ -153,6 +176,48 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Eva.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Rubrica.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormularioRubrica.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Categoria.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormularioCategoria.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SubCategoria.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormularioElemento.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Menu2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -10,23 +10,25 @@ using Xamarin.Forms.Xaml;
 namespace X_FirebaseVideo
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Menu : ContentPage
+    public partial class Menu2 : ContentPage
     {
-        public Menu()
+        String a;
+        public Menu2(String dui)
         {
-            Title = "Menú";
+            Title = "Selección";
             InitializeComponent();
+            a = dui;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Curso());
+            Navigation.PushAsync(new Estudiante(a));
         }
 
-
-        private void Button_Clicked_2(object sender, EventArgs e)
+        private void Button_Clicked_1(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Rubrica(true,""));
+            Navigation.PushAsync(new Eva(a));
         }
+
     }
 }

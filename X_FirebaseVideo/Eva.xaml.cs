@@ -15,11 +15,11 @@ namespace X_FirebaseVideo
         ObservableCollection<Contact> people = new ObservableCollection<Contact>();
         FirebaseClient firebase;
         private bool _isRefreshing = false;
-        string a, b;
-        public Eva(String a,String b)
+        string a;
+        public Eva(String a)
         {
             this.a = a;
-            this.b = b;
+
 
             Title = "Escoja la evaluacion";
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace X_FirebaseVideo
             }
 
             var list = (await firebase
-            .Child("Evaluación" + a + b)
+            .Child("Evaluación" + a)
             .OnceAsync<Contact>());
 
             people.Clear();
@@ -71,7 +71,7 @@ namespace X_FirebaseVideo
             if (e.SelectedItem == null) return;
             Contact data = e.SelectedItem as Contact;
 
-            var secondPage = new SecondPage(false,a,b);
+            var secondPage = new Rubrica(false,a);
             secondPage.BindingContext = data;
             await Navigation.PushAsync(secondPage);
         }
@@ -96,7 +96,7 @@ namespace X_FirebaseVideo
         public async void Handle_Toolbar_Add(object sender, EventArgs e)
         {
             Contact c = new Contact();
-            var formulario1 = new SecondPage(true,a,b);
+            var formulario1 = new SecondPage(true,a);
             formulario1.BindingContext = c;
             await Navigation.PushAsync(formulario1);
         }
@@ -104,7 +104,7 @@ namespace X_FirebaseVideo
         public async void Handle_Toolbar_DeleteAll(object sender, EventArgs e)
         {
             await firebase
-                         .Child("Evaluación" + a + b).DeleteAsync();
+                         .Child("Evaluación" + a).DeleteAsync();
             await getList();
         }
 

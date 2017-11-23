@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="X_FirebaseVideo.FormularioElemento">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical">
+
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Nombre  :"></Label>
+                <Entry Text="{Binding Nombre}" HorizontalOptions="FillAndExpand" ></Entry>
+
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Peso    :"></Label>
+                <Entry Text="{Binding Peso}" HorizontalOptions="FillAndExpand" ></Entry>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="L1    :"></Label>
+                <Entry Text="{Binding L1}" HorizontalOptions="FillAndExpand" ></Entry>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="L2    :"></Label>
+                <Entry Text="{Binding L2}" HorizontalOptions="FillAndExpand" ></Entry>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="L3    :"></Label>
+                <Entry Text="{Binding L3}" HorizontalOptions="FillAndExpand" ></Entry>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="L4    :"></Label>
+                <Entry Text="{Binding L4}" HorizontalOptions="FillAndExpand" ></Entry>
+
+            </StackLayout>
+
+            <Button Text="Save" HorizontalOptions="FillAndExpand" BackgroundColor="Blue" TextColor="White" Clicked="Save_Clicked" />
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>
